@@ -1,5 +1,4 @@
-# .github/workflows/rax3000me.yml
-name: RAX3000M-E
+name: RAX3000MEe
 
 on:
   push:
