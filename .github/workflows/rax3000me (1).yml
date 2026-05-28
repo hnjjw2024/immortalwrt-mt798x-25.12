@@ -13,7 +13,7 @@
 #  10. 增加 workflow_dispatch 手动输入参数
 # ============================================================
 
-name: RAX3000ME Build ImmortalWrt 25.12
+name: 0RAX3000ME Build ImmortalWrt 25.12
 
 on:
   workflow_dispatch:
