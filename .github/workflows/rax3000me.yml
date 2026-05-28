@@ -1,4 +1,4 @@
-name: Build ImmortalWrt 25.12 for RAX3000M
+name: RAX3000ME Build ImmortalWrt 25.12 for 
 
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ jobs:
       - name: Build firmware
         run: |
           # 克隆 25.12 仓库源码
-          git clone https://github.com/tfnhui/immortalwrt-mt798x-25.12.git openwrt
+          git clone https://github.com/hnjjw2024/immortalwrt-mt798x-25.12.git openwrt
           cd openwrt
           
           # 更新 feeds
@@ -26,7 +26,7 @@ jobs:
           ./scripts/feeds install -a
           
           # 直接复制配置文件
-          cp defconfig/rax3000m-openclash.config .config
+          cp defconfig/rax3000me-openclash.config .config
           # 下载编译所需的源码包
           make download -j$(nproc)
           # 开始编译
@@ -38,21 +38,21 @@ jobs:
       - name: Upload firmware
         uses: actions/upload-artifact@v4
         with:
-          name: immortalwrt-25.12-rax3000m-firmware
+          name: immortalwrt-25.12-rax3000me-firmware
           path: openwrt/bin/targets/mediatek/filogic/
           if-no-files-found: warn
 
       - name: Create Release and Upload Assets
         uses: softprops/action-gh-release@v1
         with:
-          name: "RAX3000M 固件 ${{ steps.date.outputs.date }} #${{ github.run_number }}"
+          name: "RAX3000ME 固件 ${{ steps.date.outputs.date }} #${{ github.run_number }}"
           tag_name: "build-${{ steps.date.outputs.date }}-${{ github.run_number }}"
           body: |
             ## 自动编译固件
             
             - 编译时间：${{ steps.date.outputs.date }}
             - 编译编号：#${{ github.run_number }}
-            - 设备：CMCC RAX3000M (eMMC / NAND)
+            - 设备：CMCC RAX3000ME (eMMC / NAND)
             - 内核：6.12（25.12 版本）
             - 包含插件：OpenClash、磁盘管理、Argon 主题等
           files: openwrt/bin/targets/mediatek/filogic/*
