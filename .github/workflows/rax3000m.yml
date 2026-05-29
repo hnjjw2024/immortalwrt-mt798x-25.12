@@ -27,10 +27,11 @@ jobs:
           
           # 直接复制配置文件
           cp defconfig/rax3000m-openclash.config .config
+          make defconfig
           # 下载编译所需的源码包
           make download -j$(nproc)
           # 开始编译
-          make -j$(nproc)
+          make -j$(nproc) || make -j1 V=s 2>&1 | tail -100
           
           # 删除 packages 目录（不需要上传）
           rm -rf bin/targets/mediatek/filogic/packages
