@@ -26,7 +26,7 @@ jobs:
           ./scripts/feeds install -a
           
           # 直接复制配置文件
-          cp defconfig/00rax3000me-openclash.config  .config
+          cp defconfig/rax3000me-openclash.config .config
           # 下载编译所需的源码包
           make download -j$(nproc)
           # 开始编译
