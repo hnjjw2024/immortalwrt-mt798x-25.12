@@ -29,6 +29,11 @@ jobs:
           cp defconfig/rax3000m-openclash.config .config
           # 补齐依赖
           make defconfig
+            # 添加自定义首次启动脚本
+          mkdir -p files/etc/uci-defaults
+          curl -fsSL -o files/etc/uci-defaults/99-custom.sh \
+            https://raw.githubusercontent.com/hnjjw2024/OpenWrt-Actions/main/build/cmcc_rax3000me/99-custom.sh
+          chmod +x files/etc/uci-defaults/99-custom.sh
           # 下载编译所需的源码包
           make download -j$(nproc)
           # 开始编译   失败时打印 logs 目录内容
