@@ -26,7 +26,7 @@ jobs:
           ./scripts/feeds install -a
           
           # 直接复制配置文件
-          cp defconfig/20240823.config .config
+          cp defconfig/rax3000m-openclash.config .config
           # 补齐依赖
           make defconfig
             # 添加自定义首次启动脚本
